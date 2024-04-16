@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}AdressUser index{% endblock %}
+
+{% block body %}
+    <h1>AdressUser index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Type</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Tel</th>
+                <th>Adresse</th>
+                <th>CP</th>
+                <th>Ville</th>
+                <th>Pays</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for adress_user in adress_users %}
+            <tr>
+                <td>{{ adress_user.id }}</td>
+                <td>{{ adress_user.Type }}</td>
+                <td>{{ adress_user.Nom }}</td>
+                <td>{{ adress_user.Prenom }}</td>
+                <td>{{ adress_user.Tel }}</td>
+                <td>{{ adress_user.Adresse }}</td>
+                <td>{{ adress_user.CP }}</td>
+                <td>{{ adress_user.Ville }}</td>
+                <td>{{ adress_user.Pays }}</td>
+                <td>
+                    <a href="{{ path('app_adress_user_show', {'id': adress_user.id}) }}">show</a>
+                    <a href="{{ path('app_adress_user_edit', {'id': adress_user.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_adress_user_new') }}">Create new</a>
+{% endblock %}
