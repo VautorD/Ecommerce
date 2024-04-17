@@ -19,19 +19,12 @@ class LignePanier
     #[ORM\JoinColumn(nullable: false)]
     private ?Panier $Paniers = null;
 
-    /**
-     * @var Collection<int, Produit>
-     */
-    #[ORM\OneToMany(targetEntity: Produit::class, mappedBy: 'lignePanier')]
-    private Collection $Produits;
+    #[ORM\ManyToOne(inversedBy: 'lignePaniers')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Produit $Produits = null;
 
     #[ORM\Column(length: 50)]
-    private ?string $Quantité = null;
-
-    public function __construct()
-    {
-        $this->Produits = new ArrayCollection();
-    }
+    private ?string $Quantite = null;
 
     public function getId(): ?int
     {
@@ -50,44 +43,26 @@ class LignePanier
         return $this;
     }
 
-    /**
-     * @return Collection<int, Produit>
-     */
-    public function getProduits(): Collection
+    public function getProduits(): ?Produit
     {
         return $this->Produits;
     }
 
-    public function addProduit(Produit $produit): static
+    public function setProduits(?Produit $Produits): static
     {
-        if (!$this->Produits->contains($produit)) {
-            $this->Produits->add($produit);
-            $produit->setLignePanier($this);
-        }
+        $this->Produits = $Produits;
 
         return $this;
     }
 
-    public function removeProduit(Produit $produit): static
+    public function getQuantite(): ?string
     {
-        if ($this->Produits->removeElement($produit)) {
-            // set the owning side to null (unless already changed)
-            if ($produit->getLignePanier() === $this) {
-                $produit->setLignePanier(null);
-            }
-        }
-
-        return $this;
+        return $this->Quantite;
     }
 
-    public function getQuantité(): ?string
+    public function setQuantite(string $Quantite): static
     {
-        return $this->Quantité;
-    }
-
-    public function setQuantité(string $Quantité): static
-    {
-        $this->Quantité = $Quantité;
+        $this->Quantite = $Quantite;
 
         return $this;
     }

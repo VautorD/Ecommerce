@@ -14,8 +14,12 @@ class LignePanierType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('Quantité')
+            ->add('Quantite')
             ->add('Paniers', EntityType::class, [
+                'class' => Panier::class,
+                'choice_label' => 'id',
+            ])
+            ->add('Produits', EntityType::class, [
                 'class' => Panier::class,
                 'choice_label' => 'id',
             ])

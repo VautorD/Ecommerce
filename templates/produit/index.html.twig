@@ -15,6 +15,7 @@
                 <th>Taille</th>
                 <th>Prix</th>
                 <th>Disponible</th>
+                <th>Slug</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -28,6 +29,7 @@
                 <td>{{ produit.Taille }}</td>
                 <td>{{ produit.Prix }}</td>
                 <td>{{ produit.Disponible ? 'Yes' : 'No' }}</td>
+                <td>{{ produit.Slug }}</td>
                 <td>
                     <a href="{{ path('app_produit_show', {'id': produit.id}) }}">show</a>
                     <a href="{{ path('app_produit_edit', {'id': produit.id}) }}">edit</a>

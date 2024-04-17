@@ -21,10 +21,7 @@ class ProduitType extends AbstractType
             ->add('Taille')
             ->add('Prix')
             ->add('Disponible')
-            ->add('lignePanier', EntityType::class, [
-                'class' => LignePanier::class,
-                'choice_label' => 'id',
-            ])
+            ->add('Slug')
             ->add('categorie', EntityType::class, [
                 'class' => Categorie::class,
                 'choice_label' => 'id',

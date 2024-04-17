@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Trait\SlugTrait;
 use App\Repository\ProduitRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -10,6 +11,9 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: ProduitRepository::class)]
 class Produit
 {
+
+    use SlugTrait;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -33,9 +37,11 @@ class Produit
     #[ORM\Column]
     private ?bool $Disponible = null;
 
-    #[ORM\ManyToOne(inversedBy: 'Produits')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?LignePanier $lignePanier = null;
+    /**
+     * @var Collection<int, LignePanier>
+     */
+    #[ORM\OneToMany(targetEntity: LignePanier::class, mappedBy: 'Produits')]
+    private Collection $lignePaniers;
 
     /**
      * @var Collection<int, LignesCommande>
@@ -55,6 +61,7 @@ class Produit
 
     public function __construct()
     {
+        $this->lignesPanier = new ArrayCollection();
         $this->lignesCommandes = new ArrayCollection();
         $this->media = new ArrayCollection();
     }
@@ -136,14 +143,32 @@ class Produit
         return $this;
     }
 
-    public function getLignePanier(): ?LignePanier
+    /**
+     * @return Collection<int, LignePanier>
+     */
+    public function getLignePaniers(): Collection
     {
-        return $this->lignePanier;
+        return $this->lignePaniers;
     }
 
-    public function setLignePanier(?LignePanier $lignePanier): static
+    public function addLignePanier(LignePanier $lignePanier): static
     {
-        $this->lignePanier = $lignePanier;
+        if (!$this->lignePaniers->contains($lignePanier)) {
+            $this->lignePaniers->add($lignePanier);
+            $lignePanier->setProduits($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLignePanier(LignePanier $lignePanier): static
+    {
+        if ($this->lignePaniers->removeElement($lignePanier)) {
+            // set the owning side to null (unless already changed)
+            if ($lignePanier->getProduits() === $this) {
+                $lignePanier->setProduits(null);
+            }
+        }
 
         return $this;
     }

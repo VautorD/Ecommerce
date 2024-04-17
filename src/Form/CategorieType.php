@@ -14,6 +14,7 @@ class CategorieType extends AbstractType
         $builder
             ->add('Nom')
             ->add('Description')
+            ->add('Slug')
         ;
     }
 
