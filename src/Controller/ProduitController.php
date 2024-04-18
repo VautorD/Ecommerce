@@ -22,6 +22,18 @@ class ProduitController extends AbstractController
         ]);
     }
 
+    #[Route('/{Slug}', name: 'app_produit_details', methods: ['GET'])]
+    public function list(Request $request, ProduitRepository $produitRepository): Response
+    {
+        
+        $Slug = $request->attributes->get('Slug');
+        $produit = $produitRepository->findOneBy(['Slug' => $Slug]);
+
+        return $this->render('produit/details.html.twig', [
+            'produit' => $produit,
+        ]);
+    }
+
     #[Route('/new', name: 'app_produit_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {

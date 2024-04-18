@@ -64,7 +64,7 @@ class Categorie
         return $this->Nom;
     }
 
-    public function setNom(string $Nom): static
+    public function setNom(string $Nom): self
     {
         $this->Nom = $Nom;
 

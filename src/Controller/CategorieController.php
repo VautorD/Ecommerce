@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+
 use App\Entity\Categorie;
 use App\Form\CategorieType;
 use App\Repository\CategorieRepository;
@@ -14,11 +15,27 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/categorie')]
 class CategorieController extends AbstractController
 {
+
     #[Route('/', name: 'app_categorie_index', methods: ['GET'])]
     public function index(CategorieRepository $categorieRepository): Response
     {
         return $this->render('categorie/index.html.twig', [
             'categories' => $categorieRepository->findAll(),
+        ]);
+    }
+
+    #[Route('/{Slug}', name: 'app_categorie_list', methods: ['GET'])]
+    public function list(Request $request, CategorieRepository $categorieRepository): Response
+    {
+        
+        $Slug = $request->attributes->get('Slug');
+        $categorie = $categorieRepository->findOneBy(['Slug' => $Slug]);
+
+        $produits = $categorie->getProduits();
+
+        return $this->render('categorie/list.html.twig', [
+            'categorie' => $categorie,
+            'produits' => $produits
         ]);
     }
 
