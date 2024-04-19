@@ -18,9 +18,6 @@ class Commande
     #[ORM\Column(length: 50)]
     private ?string $Num_Commande = null;
 
-    #[ORM\Column]
-    private ?bool $Valide = null;
-
     #[ORM\ManyToOne(inversedBy: 'commandes')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $users = null;
@@ -31,7 +28,7 @@ class Commande
     /**
      * @var Collection<int, LignesCommande>
      */
-    #[ORM\OneToMany(targetEntity: LignesCommande::class, mappedBy: 'commandes')]
+    #[ORM\OneToMany(targetEntity: LignesCommande::class, mappedBy: 'commandes', orphanRemoval:true, cascade:['persist'])]
     private Collection $lignesCommandes;
 
     public function __construct()
@@ -44,14 +41,14 @@ class Commande
         return $this->id;
     }
 
-    public function isValide(): ?bool
+    public function getNum_Commande(): ?string
     {
-        return $this->Valide;
+        return $this->Num_Commande;
     }
 
-    public function setValide(bool $Valide): static
+    public function setNum_Commande(string $Num_Commande): static
     {
-        $this->Valide = $Valide;
+        $this->Num_Commande = $Num_Commande;
 
         return $this;
     }

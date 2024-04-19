@@ -35,7 +35,7 @@ class Produit
     private ?float $Prix = null;
 
     #[ORM\Column]
-    private ?bool $Disponible = null;
+    private ?int $Stock = null;
 
     /**
      * @var Collection<int, LignePanier>
@@ -131,14 +131,14 @@ class Produit
         return $this;
     }
 
-    public function isDisponible(): ?bool
+    public function getStock(): ?int
     {
-        return $this->Disponible;
+        return $this->Stock;
     }
 
-    public function setDisponible(bool $Disponible): static
+    public function setStock(int $Stock): static
     {
-        $this->Disponible = $Disponible;
+        $this->Stock = $Stock;
 
         return $this;
     }

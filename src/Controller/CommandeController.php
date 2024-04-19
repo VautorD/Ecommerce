@@ -2,10 +2,13 @@
 
 namespace App\Controller;
 
+use App\Entity\LignesCommande;
 use App\Entity\Commande;
 use App\Form\CommandeType;
+use App\Repository\ProduitRepository;
 use App\Repository\CommandeRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,12 +17,37 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/commande')]
 class CommandeController extends AbstractController
 {
-    #[Route('/', name: 'app_commande_index', methods: ['GET'])]
-    public function index(CommandeRepository $commandeRepository): Response
+    #[Route('/add', name: 'app_commande_add', methods: ['GET'])]
+    public function add(SessionInterface $session, ProduitRepository $produitRepository, EntityManagerInterface $entityManager): Response
     {
-        return $this->render('commande/index.html.twig', [
-            'commandes' => $commandeRepository->findAll(),
-        ]);
+        $this->denyAccessUnlessGranted('ROLE_USER');
+        $panier = $session->get('panier',[]);
+        
+        $commande = new Commande();
+        $commande->setUsers($this->getUser());
+        $commande->setNum_Commande(uniqid());
+
+        foreach( $panier as $items => $quantite){
+            $lignesCommandes = new LignesCommande();
+
+            $produit = $produitRepository->find($items);
+            $prix = $produit->getPrix();
+
+            $lignesCommandes->setProduits($produit);
+            
+            $lignesCommandes->setPrix($prix);
+            $lignesCommandes->setQuantite($quantite);
+
+            $commande->addLignesCommande($lignesCommandes);
+        }
+
+        $entityManager->persist($commande);
+        $entityManager->flush($commande);
+
+        $session->remove('panier');
+
+        $this->addFlash('message', 'Votre command a bien été enregistrée');
+        return $this->redirectToRoute('app_adress_user_new');
     }
 
     #[Route('/new', name: 'app_commande_new', methods: ['GET', 'POST'])]

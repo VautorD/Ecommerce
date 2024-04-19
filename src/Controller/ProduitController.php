@@ -22,21 +22,10 @@ class ProduitController extends AbstractController
         ]);
     }
 
-    #[Route('/{Slug}', name: 'app_produit_details', methods: ['GET'])]
-    public function list(Request $request, ProduitRepository $produitRepository): Response
-    {
-        
-        $Slug = $request->attributes->get('Slug');
-        $produit = $produitRepository->findOneBy(['Slug' => $Slug]);
-
-        return $this->render('produit/details.html.twig', [
-            'produit' => $produit,
-        ]);
-    }
-
     #[Route('/new', name: 'app_produit_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
+        $this->denyAccessUnLessGranted('ROLE_ADMIN');
         $produit = new Produit();
         $form = $this->createForm(ProduitType::class, $produit);
         $form->handleRequest($request);
@@ -54,9 +43,22 @@ class ProduitController extends AbstractController
         ]);
     }
 
+    #[Route('/{Slug}', name: 'app_produit_details', methods: ['GET'])]
+    public function list(Request $request, ProduitRepository $produitRepository): Response
+    {
+        
+        $Slug = $request->attributes->get('Slug');
+        $produit = $produitRepository->findOneBy(['Slug' => $Slug]);
+
+        return $this->render('produit/details.html.twig', [
+            'produit' => $produit,
+        ]);
+    }
+
     #[Route('/{id}', name: 'app_produit_show', methods: ['GET'])]
     public function show(Produit $produit): Response
     {
+        $this->denyAccessUnLessGranted('ROLE_ADMIN');
         return $this->render('produit/show.html.twig', [
             'produit' => $produit,
         ]);
@@ -65,6 +67,7 @@ class ProduitController extends AbstractController
     #[Route('/{id}/edit', name: 'app_produit_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Produit $produit, EntityManagerInterface $entityManager): Response
     {
+        $this->denyAccessUnLessGranted('ROLE_ADMIN');
         $form = $this->createForm(ProduitType::class, $produit);
         $form->handleRequest($request);
 
@@ -83,6 +86,7 @@ class ProduitController extends AbstractController
     #[Route('/{id}', name: 'app_produit_delete', methods: ['POST'])]
     public function delete(Request $request, Produit $produit, EntityManagerInterface $entityManager): Response
     {
+        $this->denyAccessUnLessGranted('ROLE_ADMIN');
         if ($this->isCsrfTokenValid('delete'.$produit->getId(), $request->getPayload()->get('_token'))) {
             $entityManager->remove($produit);
             $entityManager->flush();

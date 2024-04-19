@@ -33,7 +33,7 @@ class AdressUserController extends AbstractController
             $entityManager->persist($adressUser);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_adress_user_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_end_commande', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('adress_user/new.html.twig', [

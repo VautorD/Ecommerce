@@ -14,7 +14,7 @@
                 <th>Type</th>
                 <th>Taille</th>
                 <th>Prix</th>
-                <th>Disponible</th>
+                <th>Stock</th>
                 <th>Slug</th>
                 <th>actions</th>
             </tr>
@@ -28,7 +28,7 @@
                 <td>{{ produit.Type }}</td>
                 <td>{{ produit.Taille }}</td>
                 <td>{{ produit.Prix }}</td>
-                <td>{{ produit.Disponible ? 'Yes' : 'No' }}</td>
+                <td>{{ produit.Stock }}</td>
                 <td>{{ produit.Slug }}</td>
                 <td>
                     <a href="{{ path('app_produit_show', {'id': produit.id}) }}">show</a>

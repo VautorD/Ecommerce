@@ -8,25 +8,33 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: LignesCommandeRepository::class)]
 class LignesCommande
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
 
+    #[ORM\Id]
     #[ORM\ManyToOne(inversedBy: 'lignesCommandes')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Produit $produits = null;
 
+    #[ORM\Id]
     #[ORM\ManyToOne(inversedBy: 'lignesCommandes')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Commande $commandes = null;
 
     #[ORM\Column(length: 50)]
-    private ?string $Quantité = null;
+    private ?string $Quantite = null;
 
-    public function getId(): ?int
+    #[ORM\Column]
+    private ?float $Prix = null;
+
+    public function getPrix(): ?float
     {
-        return $this->id;
+        return $this->Prix;
+    }
+
+    public function setPrix(float $Prix): static
+    {
+        $this->Prix = $Prix;
+
+        return $this;
     }
 
     public function getProduits(): ?Produit
@@ -53,14 +61,14 @@ class LignesCommande
         return $this;
     }
 
-    public function getQuantité(): ?string
+    public function getQuantite(): ?string
     {
-        return $this->Quantité;
+        return $this->Quantite;
     }
 
-    public function setQuantité(string $Quantité): static
+    public function setQuantite(string $Quantite): static
     {
-        $this->Quantité = $Quantité;
+        $this->Quantite = $Quantite;
 
         return $this;
     }

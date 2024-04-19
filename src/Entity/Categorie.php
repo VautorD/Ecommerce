@@ -26,6 +26,7 @@ class Categorie
 
     #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'categorie')]
     #[ORM\JoinColumn(nullable: true)]
+    #[ORM\JoinColumn(onDelete: 'cascade')]
     private ?self $parent = null;
 
      /**
