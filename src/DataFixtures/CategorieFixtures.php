@@ -30,7 +30,7 @@ class CategorieFixtures extends Fixture
         $this->creerCategorie('Pull manches courtes', $faker->text(), $parent, $manager);
         $this->creerCategorie('Pull manches longues', $faker->text(), $parent, $manager);
 
-        $categorie = $this->creerCategorie('Sweat Plaide', $faker->text(), null, $manager);
+        $parent = $this->creerCategorie('Plaide Sweat', $faker->text(), null, $manager);
 
         $this->creerCategorie('Homme',$faker->text(), $parent, $manager);
         $this->creerCategorie('Femme',$faker->text(), $parent, $manager);
