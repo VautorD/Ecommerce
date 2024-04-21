@@ -1,6 +1,6 @@
 .logo {
-    width: 150px; 
-    height: 150px; 
+    width: 180px; 
+    height: 180px; 
 }
 
 
@@ -27,8 +27,10 @@
 
 
 
+
+
 .btn-custom:hover {
-    background-color: #464748; 
+    background-color: #99bada; 
 }
 
 
@@ -149,3 +151,58 @@ footer {
     overflow-x: hidden; 
   }
   
+
+
+  form h1 {
+    text-align: center; 
+  }
+  
+ 
+  .btn-primary{
+    background-color: #ed7d68; 
+    margin: auto; 
+    display: block;
+    border:  #ed7d68;
+    margin-bottom: 20px;
+  }
+
+  .btn-primary:hover {
+    background-color: #9EC4DB; 
+}
+
+.centered-text {
+    text-align: center;
+    margin-top: 20 px;
+}
+
+
+.styled-input {
+    margin-bottom: 30px;
+    background-color: #F0F0F0;
+ 
+}
+
+.styled-label{
+    margin-bottom: 15px;
+}
+
+.styled-checkbox {
+    width: 25px;
+    height: 25px;
+    border-radius: 5px;
+    margin-right: 10px; 
+
+}
+
+.center{
+    text-align: center;
+}
+
+.btn-action{
+    background-color: #9EC4DB;
+}
+
+
+.btn-action:hover {
+    background-color: #9EC4DB;
+}

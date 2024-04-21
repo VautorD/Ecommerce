@@ -3,10 +3,10 @@
 {% block title %}Inscription{% endblock %}
 
 {% block body %}
-    <section class="container">
-        <div class="row">
-            <div class="col">
-                <h1>Inscription</h1>
+    <section class="container my-3">
+        <div class="row justify-content-center">
+            <div class="col-sm-12 col-md-8 col-lg-6">
+                <h1 class="h3 mb-3 font-weight-normal center">Inscription</h1>
 
                 {{ form_errors(registrationForm) }}
 
@@ -23,14 +23,14 @@
                         <legend> Ma connexion</legend>
                     {{ form_row(registrationForm.email) }}
                     {{ form_row(registrationForm.plainPassword, {
-                        label: 'Password'
+                        label: 'Mot de passe'
                     }) }}
                     </fieldset>
 
                     {{ form_row(registrationForm.RGPDConsent) }}
 
-                    <button type="submit" class="btn btn-primary btn-lg my-3">M'inscrire</button>
-                    <p>Vous êtes deja inscrit(e) ? <a href="{{ path('app_login')}}">Se connecter</a></p>
+                    <button type="submit" class="btn btn-primary">M'inscrire</button>
+                    <p class="centered-text">Vous êtes deja inscrit(e) ? <a href="{{ path('app_login')}}">Se connecter</a></p>
                 {{ form_end(registrationForm) }}
             </div>
         </div>

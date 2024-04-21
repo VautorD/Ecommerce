@@ -3,18 +3,18 @@
 {% block title %}Mon Panier{% endblock %}
 
 {% block body %}
-    <main class="container">
+    <main class="container mt-5">
         <section class="row">
             <div class="col-12">
-                <h1>Panier</h1>
-                <table class="table">
-                    <thead>
+                <h1 class="mb-4">Panier</h1>
+                <table class="table table-striped table-hover">
+                    <thead class="thead-dark">
                         <tr>
                             <th>Produit</th>
                             <th>Prix</th>
                             <th>Quantité</th>
                             <th>Total</th>
-                            <th>actions</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -25,31 +25,31 @@
                                 <td>{{ datas.quantite }}</td>
                                 <td>{{ datas.quantite * datas.produit.Prix }}€</td>
                                 <td>
-                                    <a href="{{ path('app_panier_add', {'id': datas.produit.id}) }}" class="btn btn-success">+</a>
-                                    <a href="{{ path('app_panier_remove', {'id': datas.produit.id}) }}" class="btn btn-warning">-</a>
-                                    <a href="{{ path('app_panier_delete', {'id': datas.produit.id}) }}" class="btn btn-danger">Supprimer</a>
+                                    <a href="{{ path('app_panier_add', {'id': datas.produit.id}) }}" class="btn btn-action">+</a>
+                                    <a href="{{ path('app_panier_remove', {'id': datas.produit.id}) }}" class="btn btn-action">-</a>
+                                    <a href="{{ path('app_panier_delete', {'id': datas.produit.id}) }}" class="btn btn-action"><i class="fas fa-trash-alt"></i></a>
                                 </td>
                             </tr>
                         {% else %}
                             <tr>
-                                <td colspan="5">Votre panier est vide</td>
+                                <td colspan="5" class="text-center">Votre panier est vide</td>
                             </tr>
                         {% endfor %}
                     </tbody>
                     <tfoot>
                         {% if total > 0 %}
                             <tr>
-                                <td colspan="3">Total</td>
-                                <td>{{ total }}€</td>
+                                <td colspan="3"><strong>Total</strong></td>
+                                <td><strong>{{ total }}€</strong></td>
                                 <td>
-                                <a href="{{ path('app_panier_vider') }}" class="btn btn-danger">Vider</a>
+                                    <a href="{{ path('app_panier_vider') }}" class="btn btn-custom">Vider</a>
                                 </td>
                             </tr>
                         {% endif %}
                     </tfoot>
                 </table>
                 {% if total > 0 %}
-                    <a href="{{ path('app_commande_add') }}" class="btn btn-primary">Valider le panier</a>
+                    <a href="{{ path('app_commande_add') }}" class="btn btn-primary" style="width: 200px">Valider le panier</a>
                 {% endif %}
             </div>
         </section>
