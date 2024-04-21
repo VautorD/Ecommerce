@@ -3,12 +3,26 @@
 {% block title %}Cozy Vibes{% endblock %}
 
 {% block body %}
-    <main class="container">
+  <div class="banner">
+    <img src="{{ asset('assets/images/banniere.png') }}" alt="banniere" class="img-fluid w-100">
+  </div>
+  <!-- Le reste de votre contenu -->
+
+
+
+
+
+
+
+
+
+  <main class="container">
         <section class="row">
-            <div class="col-12">
-                <h1>Site Cozy Vibes</h1>
-                <p>Bienvenue dans notre boutique Cozy Vibes</p>
-            </div>
+            
+
+
+
+
             {% for category in categories %}
                 {% if category.parent is null %}
                     <div class="col-12">
@@ -30,3 +44,4 @@
         </section>
     </main>
 {% endblock %}
+
