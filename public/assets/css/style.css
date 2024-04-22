@@ -60,6 +60,9 @@ footer {
   footer p {
     margin-bottom: 20px;
     color: #fff;
+    font-weight: 400;
+
+   
   }
   
   footer ul {
@@ -74,10 +77,13 @@ footer {
   footer ul li a {
     color: #fff;
     text-decoration: none;
+    font-weight: 400;
   }
   
   footer ul li a:hover {
     color: #fff;
+    font-weight: 600;
+
   }
   
  
@@ -112,16 +118,20 @@ footer {
   .social-links a {
     color: #fff; 
     text-decoration: none; 
+    font-weight: 600;
+
   }
   
   .social-links a:hover {
     color: #ed7d68; 
+
   }
   
 
 
   .containerr{
     background-color: #ed7d68;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   }
   .containerr .row .col {
     margin: 20px 0; 
