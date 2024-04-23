@@ -45,4 +45,26 @@ class ProduitRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+
+
+
+
+
+
+    /**
+     * Recherche de produits par nom ou catégorie.
+     *
+     * @param string $searchTerm Le terme de recherche
+     * @return Produit[] Liste des produits correspondants à la recherche
+     */
+    public function search(string $searchTerm): array
+    {
+        return $this->createQueryBuilder('p')
+            ->leftJoin('p.categorie', 'c')
+            ->where('p.Nom LIKE :term')
+            ->orWhere('c.Nom LIKE :term')
+            ->setParameter('term', '%'.$searchTerm.'%')
+            ->getQuery()
+            ->getResult();
+    }
 }
