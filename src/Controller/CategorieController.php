@@ -53,12 +53,27 @@ class CategorieController extends AbstractController
         $Slug = $request->attributes->get('Slug');
         $categorie = $categorieRepository->findOneBy(['Slug' => $Slug]);
 
-        $produits = $categorie->getProduits();
+        $produits = $produits = $this->getProduitsRecursive($categorie);
 
         return $this->render('categorie/list.html.twig', [
             'categorie' => $categorie,
             'produits' => $produits
         ]);
+    }
+
+    private function getProduitsRecursive(Categorie $categorie): array
+    {
+        $produits = [];
+
+        foreach ($categorie->getProduits() as $produit) {
+            $produits[] = $produit;
+        }
+
+        foreach ($categorie->getCategories() as $sousCategorie) {
+            $produits = array_merge($produits, $this->getProduitsRecursive($sousCategorie));
+        }
+
+        return $produits;
     }
 
     #[Route('/{id}', name: 'app_categorie_show', methods: ['GET'])]

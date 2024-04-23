@@ -1,3 +1,4 @@
+{% extends 'base.html.twig' %}
 
 {% block title %}Catégorie {{ categorie.nom }}{% endblock %}
 
@@ -5,20 +6,20 @@
     <main class="container">
         <section class="row">
             <div class="col-12">
-                <h1>Liste des produits de la catégorie {{ categorie.nom }}</h1>
+                <h1>Tous nos {{ categorie.nom }}</h1>
             </div>
-            {% for produits in categorie.produits %}
+            {% for produit in produits %}
                 <div class="col-3 mb-3">
                     <article class="card h-100">
-                    {% for media in produits.Media %}
-                                <div class="carousel-item {{ (loop.first) ? 'active' : '' }}">
-                                <img src="{{ asset('uploads/' ~ media.lien) }}" class="d-block w-100" alt="...">
-                                </div>
-                            {% endfor %}
+                        {% for media in produit.Media %}
+                            <div class="carousel-item {{ loop.first ? 'active' }}">
+                                <img src="{{ asset('uploads/' ~ media.lien) }}" class="d-block w-100" alt="{{ media.alt }}">
+                            </div>
+                        {% endfor %}
                         <div class="card-body">
-                            <h2 class="card-title">{{ produits.nom }}</h2>
-                            <p class="card-text">{{ produits.prix}} €</p>
-                            <a href="{{ path('app_produit_details', {Slug: produits.Slug})}}" class="btn btn-primary"> Voir les détails</a>
+                            <h2 class="card-title">{{ produit.nom }}</h2>
+                            <p class="card-text">{{ produit.prix }} €</p>
+                            <a href="{{ path('app_produit_details', {Slug: produit.Slug}) }}" class="btn btn-primary">Voir les détails</a>
                         </div>
                     </article>
                 </div>

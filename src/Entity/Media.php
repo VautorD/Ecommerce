@@ -23,10 +23,11 @@ class Media
     private ?string $Alt = null;
 
     #[ORM\ManyToOne(inversedBy: 'media')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Produit $produit = null;
 
     #[ORM\ManyToOne(inversedBy: 'media')]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Categorie $categories = null;
 
     public function getId(): ?int

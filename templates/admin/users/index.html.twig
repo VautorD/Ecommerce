@@ -3,5 +3,43 @@
 {% block title %}Liste des utilisateurs{% endblock %}
 
 {% block body %}
-    <h1>Administration des utilisateurs</h1>
+    <div class="container">
+    <div class="row">
+        {% include "_partieAdmin/_adminbarre.html.twig" %}
+        <main class="col-9 border border-light bg-white p-2">
+
+            <h1>Liste des utilisateurs</h1>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Email</th>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Téléphone</th>
+                        <th>Rôles</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                        <tr>
+                            <td>{{ user.getId() }}</td>
+                            <td>{{ user.getEmail() }}</td>
+                            <td>{{ user.getNom() }}</td>
+                            <td>{{ user.getPrenom() }}</td>
+                            <td>{{ user.getTel() }}</td>
+                            <td>{{ user.getRoles()|join(', ') }}</td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="7">Aucun utilisateur trouvé</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </main>
+    </div>
+</div>
+
 {% endblock %}

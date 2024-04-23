@@ -61,7 +61,7 @@ class Produit
 
     public function __construct()
     {
-        $this->lignesPanier = new ArrayCollection();
+        $this->lignePanier = new ArrayCollection();
         $this->lignesCommandes = new ArrayCollection();
         $this->media = new ArrayCollection();
     }

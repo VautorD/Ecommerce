@@ -82,16 +82,16 @@
         <div class="containerr text-center">
   <div class="row">
     <div class="col">
-      <a href="#">Accueil</a>
+      <a href="{{ path('app_home')}}">Accueil</a>
     </div>
     <div class="col">
-      <a href="#">Nos pull</a>
+      <a href="{{ path('app_categorie_list', {Slug: "pull"}) }}">Nos pull</a>
     </div>
     <div class="col">
-      <a href="#">Nos sweat</a>
+      <a href="{{ path('app_categorie_list', {Slug: "sweats"})}}">Nos sweat</a>
     </div>
     <div class="col">
-      <a href="#">Nos sweat plaid </a>
+      <a href="{{ path('app_categorie_list', {Slug: "plaide-sweat"})}}">Nos sweat plaid </a>
     </div>
   </div>
 </div>
