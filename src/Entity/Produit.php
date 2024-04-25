@@ -49,7 +49,7 @@ class Produit
     #[ORM\OneToMany(targetEntity: LignesCommande::class, mappedBy: 'produits')]
     private Collection $lignesCommandes;
 
-    #[ORM\ManyToOne(inversedBy: 'produits')]
+    #[ORM\ManyToOne(targetEntity: Categorie::class, inversedBy: 'produits')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Categorie $categorie = null;
 

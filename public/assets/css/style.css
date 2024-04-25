@@ -4,8 +4,6 @@
 }
 
 
-
-
 .navbar-custom {
     background-color: #9EC4DB;
 }
@@ -210,3 +208,42 @@ footer {
 .btn-action:hover {
     background-color: #9EC4DB;
 }
+
+h1 {
+  margin-bottom: 50px; 
+}
+
+/* Styles specific to product cards */
+.card.h-100 {
+  border: 1px solid #ccc; 
+  box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+  transition: box-shadow 0.3s ease-in-out;
+
+}
+
+.card.h-100:hover {
+  box-shadow: 0 8px 12px rgba(0,0,0,0.15); 
+}
+
+.card .carousel-item img {
+  height: 250px; 
+}
+
+/* .card-body {
+  padding: 15px; 
+}
+
+
+.card-body .card-text {
+  color: #555; 
+} */
+
+.carousel-item {
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+
+
+

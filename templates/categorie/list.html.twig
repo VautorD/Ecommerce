@@ -1,5 +1,4 @@
-peut tu rendre elegant mes cards bootstrap car ils sont pas très bien mis en valeur voici le code ( je suis sur symfony) : {% extends 'base.html.twig' %}
-
+{% extends 'base.html.twig' %}
 {% block title %}Catégorie {{ categorie.nom }}{% endblock %}
 
 {% block body %}
@@ -9,7 +8,7 @@ peut tu rendre elegant mes cards bootstrap car ils sont pas très bien mis en va
                 <h1>Liste des produits de la catégorie {{ categorie.nom }}</h1>
             </div>
             {% for produits in categorie.produits %}
-                <div class="col-3 mb-3">
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
                     <article class="card h-100">
                     {% for media in produits.Media %}
                                 <div class="carousel-item {{ (loop.first) ? 'active' : '' }}">

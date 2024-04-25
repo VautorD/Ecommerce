@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20240419190528 extends AbstractMigration
+final class Version20240423154828 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -25,7 +25,7 @@ final class Version20240419190528 extends AbstractMigration
         $this->addSql('CREATE TABLE commande (id INT AUTO_INCREMENT NOT NULL, users_id INT NOT NULL, paniers_id INT DEFAULT NULL, num_commande VARCHAR(50) NOT NULL, INDEX IDX_6EEAA67D67B3B43D (users_id), UNIQUE INDEX UNIQ_6EEAA67DBE35FDA0 (paniers_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE ligne_panier (id INT AUTO_INCREMENT NOT NULL, paniers_id INT NOT NULL, produits_id INT NOT NULL, quantite VARCHAR(50) NOT NULL, INDEX IDX_21691B4BE35FDA0 (paniers_id), INDEX IDX_21691B4CD11A2CF (produits_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE lignes_commande (produits_id INT NOT NULL, commandes_id INT NOT NULL, quantite VARCHAR(50) NOT NULL, prix DOUBLE PRECISION NOT NULL, INDEX IDX_DAAE0FCBCD11A2CF (produits_id), INDEX IDX_DAAE0FCB8BF5C2E6 (commandes_id), PRIMARY KEY(produits_id, commandes_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE media (id INT AUTO_INCREMENT NOT NULL, produit_id INT NOT NULL, categories_id INT DEFAULT NULL, type VARCHAR(50) NOT NULL, lien VARCHAR(255) NOT NULL, alt VARCHAR(255) NOT NULL, INDEX IDX_6A2CA10CF347EFB (produit_id), INDEX IDX_6A2CA10CA21214B7 (categories_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE media (id INT AUTO_INCREMENT NOT NULL, produit_id INT DEFAULT NULL, categories_id INT DEFAULT NULL, type VARCHAR(50) NOT NULL, lien VARCHAR(255) NOT NULL, alt VARCHAR(255) NOT NULL, INDEX IDX_6A2CA10CF347EFB (produit_id), INDEX IDX_6A2CA10CA21214B7 (categories_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE panier (id INT AUTO_INCREMENT NOT NULL, users_id INT NOT NULL, INDEX IDX_24CC0DF267B3B43D (users_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE produit (id INT AUTO_INCREMENT NOT NULL, categorie_id INT NOT NULL, nom VARCHAR(50) NOT NULL, couleur VARCHAR(50) NOT NULL, type VARCHAR(50) NOT NULL, taille VARCHAR(50) NOT NULL, prix DOUBLE PRECISION NOT NULL, stock INT NOT NULL, slug VARCHAR(50) NOT NULL, INDEX IDX_29A5EC27BCF5E72D (categorie_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE user (id INT AUTO_INCREMENT NOT NULL, email VARCHAR(180) NOT NULL, roles JSON NOT NULL, password VARCHAR(255) NOT NULL, nom VARCHAR(50) NOT NULL, prenom VARCHAR(50) NOT NULL, tel VARCHAR(10) NOT NULL, UNIQUE INDEX UNIQ_IDENTIFIER_EMAIL (email), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
