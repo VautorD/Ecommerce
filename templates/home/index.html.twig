@@ -8,7 +8,10 @@
   </div>
 
   <main class="container">
-        <section class="row">
+    <section class="row">
+      <div class="col-12">
+        <h1 class="my-4">CatÃ©gories phares</h1>
+      </div>
 
             {% for category in categories %}
                 {% if category.parent is null %}
@@ -31,4 +34,3 @@
         </section>
     </main>
 {% endblock %}
-

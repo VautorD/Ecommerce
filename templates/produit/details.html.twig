@@ -5,13 +5,13 @@
 {% block body %}
    
 
-    <main class="container">
+    <main class="container my-5">
         <section class="row">
-            <div class="col-12">
+            <div class="col-md-6">
                 <h1>{{ produit.nom}} </h1>
             </div>
                 <div class="col-6">
-                    <div id="carouselExampleIndicators" class="carousel slide">
+                    <div id="carouselExampleIndicators"  class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-indicators">
                             {% for interation in 1..produit.media|length%}
                                 <button type="button" data-bs-target="#carouselExampleIndicators" 
@@ -19,25 +19,85 @@
                                 aria-label="Slide {{ interation }}"></button>
                             {% endfor %}   
                         </div>
-                        <div class="carousel-inner">
+                        <div class="carousel-inner" style="height: 600px;" >
                             {% for media in produit.Media %}
                                 <div class="carousel-item {{ (loop.first) ? 'active' : '' }}">
-                                <img src="{{ asset('uploads/' ~ media.lien) }}" class="d-block w-100" alt="...">
+                                <img src="{{ asset('uploads/' ~ media.lien) }}" class="d-block mx-auto img-fluid" alt="{{ produit.nom }}">
                                 </div>
                             {% endfor %}
                         </div>
                     </div>
                 </div>
-                <div class="col-6">
-                    <p>Description: {{ produit.Type }}</p>
-                    <p> Categorie: {{produit.categorie.nom}} </p>
-                    <p> Prix: {{ produit.prix}}€ <p>
-                    {% if produit.Stock > 0 %}
-                        <a href="{{ path('app_panier_add', {'id': produit.id}) }}" class="btn btn-primary"> Ajouter au panier</a>
-                    {%else%}
-                        <p class="text-danger">Temporairement en rupture de stock</p>
-                    {% endif %}
-                </div>
-        </section>
-    </main>
+                <div class="col-md-6">
+                     <h1 class="display-2" style="margin-top:50px ">{{ produit.nom }}</h1>
+                      <p class="lead">Description: {{ produit.type }}</p>
+                     <p class="lead">Catégorie: {{ produit.categorie.nom }}</p>
+                     <p class="lead">Prix: {{ produit.prix }} €</p>
+                <div>
+                    
+  
+           
+          
+                {% if produit.stock > 0 %}
+                    <div class="sizes d-flex mb-3 align-items-center" style=" margin-top:100px;">
+                        <label for="taille" style=" margin-bottom:20px;" class="lead">Taille:</label>
+                        <button class="btn btn-primary size-option">XS</button>
+                        <button class="btn btn-primary size-option">S</button>
+                        <button class="btn btn-primary size-option">M</button>
+                        <button class="btn btn-primary size-option">L</button>
+                        <button class="btn btn-primary size-option">XL</button>
+                        <button class="btn btn-primary size-option">2XL</button>
+                        <button class="btn btn-primary size-option">3XL</button>
+                    </div>
+
+                    <div class="d-flex mb-3 align-items-center">
+                        <button class="btn btn-secondary" type="button" id="btn-minus" >-</button>
+                        <input type="text" class="form-control text-center mx-2" id="quantite" value="1" style="width: 60px;">
+                        <button class="btn btn-secondary" type="button" id="btn-plus" >+</button>
+                        <a href="{{ path('app_panier_add', {'id': produit.id}) }}" class="btn btn-primary flex-grow-1 ml-2" style="margin-left: 60px; margin-top:10px;">Ajouter au panier</a>
+                    </div>
+                    
+                {% else %}
+                    <p class="text-danger">Temporairement en rupture de stock</p>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}
+
+
+
+
+{% block javascripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const btnPlus = document.getElementById('btn-plus');
+    const btnMinus = document.getElementById('btn-minus');
+    const quantiteInput = document.getElementById('quantite');
+    const sizeOptions = document.querySelectorAll('.size-option');
+
+    btnPlus.addEventListener('click', () => {
+        quantiteInput.value = parseInt(quantiteInput.value) + 1;
+    });
+
+    btnMinus.addEventListener('click', () => {
+        if (parseInt(quantiteInput.value) > 1) {
+            quantiteInput.value = parseInt(quantiteInput.value) - 1;
+        }
+    });
+
+    sizeOptions.forEach((sizeOption) => {
+        sizeOption.addEventListener('click', (e) => {
+            // Retirer la classe 'active' de tous les boutons de taille
+            sizeOptions.forEach((button) => {
+                button.classList.remove('active');
+            });
+
+            // Ajouter la classe 'active' au bouton sélectionné
+            e.target.classList.add('active');
+        });
+    });
+});
+</script>
 {% endblock %}
