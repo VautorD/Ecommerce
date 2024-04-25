@@ -10,27 +10,60 @@
   <main class="container">
     <section class="row">
       <div class="col-12">
-        <h1 class="my-4">CatÃ©gories phares</h1>
+        <h1 class="my-4">Catégories phares</h1>
       </div>
 
-            {% for category in categories %}
-                {% if category.parent is null %}
-                    <div class="col-12">
-                        <h2>{{ category.nom }}</h2>
-                    </div>
-                    {% for subcategory in category.categories %}
-                        <div class="col-3">
-                            <div class="card" style="width: 18rem;">
-                                <div class="card-body">
-                                    <h3 class="card-title">{{ subcategory.nom }}</h3>
-                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    <a href="{{ path('app_categorie_list', {Slug: subcategory.Slug}) }}" class="btn btn-primary">Voir les produits</a>
-                                </div>
-                            </div>
-                        </div>
-                    {% endfor %}
-                {% endif %}
-            {% endfor %}
-        </section>
-    </main>
+      {# {% for category in categories %}
+        {% if category.id in [2, 3, 6, 7] %}
+          <div class="col-md-3 mb-3">
+            <div class="card h-100">
+              <div class="card-body">
+                <h3 class="card-title">{{ category.nom }}</h3>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="{{ path('app_categorie_list', {Slug: category.Slug}) }}" class="btn btn-primary">Voir les produits</a>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %} #}
+      {% for category in categories %}
+        {% if category.id == 2 %}
+          <div class="col-md-8 mb-3">
+            <div class="card h-100">
+              {# <img class="card-img-top" src="{{ asset('uploads/' ~ category.image) }}" alt="{{ category.nom }}"> #}
+              <div class="card-body">
+                <h5 class="card-title">{{ category.nom }}</h5>
+                <p class="card-text">{{ category.description }}</p>
+                <a href="{{ path('app_categorie_list', {Slug: category.Slug}) }}" class="btn btn-primary">Voir les produits</a>
+              </div>
+            </div>
+          </div>
+        {% elseif category.id in [3, 6] %}
+          <div class="col-md-4 mb-3 {{ category.id == 3 ? '2' : '3' }}">
+            <div class="card h-100">
+              {# <img class="card-img-top" src="{{ asset('uploads/' ~ category.image) }}" alt="{{ category.nom }}"> #}
+              <div class="card-body">
+                <h5 class="card-title">{{ category.nom }}</h5>
+                <p class="card-text">{{ category.description }}</p>
+                <a href="{{ path('app_categorie_list', {Slug: category.Slug}) }}" class="btn btn-primary">Voir les produits</a>
+              </div>
+            </div>
+          </div>
+        {% elseif category.id == 7 %}
+          <div class="col-md-4 mb-3">
+            <div class="card h-100">
+              {# <img class="card-img-top" src="{{ asset('uploads/' ~ category.image) }}" alt="{{ category.nom }}"> #}
+              <div class="card-body">
+                <h5 class="card-title">{{ category.nom }}</h5>
+                <p class="card-text">{{ category.description }}</p>
+                <a href="{{ path('app_categorie_list', {Slug: category.Slug}) }}" class="btn btn-primary">Voir les produits</a>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+
+
+    </section>
+  </main>
 {% endblock %}

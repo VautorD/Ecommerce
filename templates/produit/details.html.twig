@@ -7,7 +7,7 @@
 
     <main class="container my-5">
         <section class="row">
-            <div class="col-md-6">
+            <div class="col-12">
                 <h1>{{ produit.nom}} </h1>
             </div>
                 <div class="col-6">
@@ -34,9 +34,6 @@
                      <p class="lead">Catégorie: {{ produit.categorie.nom }}</p>
                      <p class="lead">Prix: {{ produit.prix }} €</p>
                 <div>
-                    
-  
-           
           
                 {% if produit.stock > 0 %}
                     <div class="sizes d-flex mb-3 align-items-center" style=" margin-top:100px;">
