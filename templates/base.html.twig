@@ -58,7 +58,11 @@
                     {% if app.user%}
                         {% if is_granted('ROLE_PRODUCT_ADMIN') %}
                             <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{ path('app_admin_index')}}">Administration</a>
+                            <a class="nav-link active" aria-current="page" href="{{ path('app_admin_index')}}">
+                              <span class="fas fa-tools"></span>
+                              <span class="text">Administration</span>
+                              
+                            </a>
                         </li>
                         {% endif %}
                         <li class="nav-item">
@@ -67,20 +71,23 @@
                              </a>
                          </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{ path('app_logout')}}">Me déconnecter</a>
+                          <a class="nav-link active" aria-current="page" href="{{ path('app_logout')}}">
+                            <span class="fas fa-sign-out-alt"></span>
+                            <span class="text">Déconnexion</span>
+                          </a>
                         </li>
                     {% else %}
 
-                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{ path('app_login')}}">
-                                <i class="fas fa-user fa-lg"></i> Compte
-                             </a>
-                         </li>
+                      <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{{ path('app_login')}}">
+                          <i class="fas fa-user fa-lg"></i> Compte
+                        </a>
+                      </li>
 
                     {% endif %}
                     <li class="nav-item">
                       <a class="nav-link active" aria-current="page" href="{{ path('app_panier_index')}}" id="panier-link">
-                        <span class="badge bg-secondary cart-quantity">0</span>
+                        {# <span class="badge bg-secondary cart-quantity">0</span> #}
                         <i class="fas fa-shopping-cart fa-lg"></i>
                         Panier
                       </a>
