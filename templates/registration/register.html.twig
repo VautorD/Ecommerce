@@ -26,8 +26,14 @@
                         label: 'Mot de passe'
                     }) }}
                     </fieldset>
-
-                    {{ form_row(registrationForm.RGPDConsent) }}
+                
+                    <div class="form-group">
+                        <div class="form-check">
+                            {{ form_widget(registrationForm.RGPDConsent, {attr: {'class': 'form-check-input'}}) }}
+                            {{ form_label(registrationForm.RGPDConsent, null, {'attr': {'class': 'form-check-label'}}) }}
+                            {{ form_errors(registrationForm.RGPDConsent) }}
+                        </div>
+                    </div>
 
                     <button type="submit" class="btn btn-primary">M'inscrire</button>
                     <p class="centered-text">Vous êtes deja inscrit(e) ? <a href="{{ path('app_login')}}">Se connecter</a></p>

@@ -2,6 +2,7 @@
 
 {% block title %}Cozy Vibes{% endblock %}
 
+
 {% block body %}
   <div class="banner">
     <img src="{{ asset('assets/images/banniere.png') }}" alt="banniere" class="img-fluid w-100">
@@ -9,14 +10,70 @@
 
   <main class="container">
     <section class="row">
+    <div class="col-12">
+        <h1 class="my-4">Nouveautés cette semaine</h1>
+      </div>
+      {# {% for produit in produits %}
+          <div class="col-md-3 mb-3">
+            <div class="card h-300" >
+                <h1 class="display-2" style="margin-top:50px ">{{ produit.nom }}</h1>
+                <p class="lead">Catégorie: {{ produit.categorie.nom }}</p>
+                <p class="display-3">Prix: {{ produit.prix }} €</p>
+                <a href="{{ path('app_produit_details', {Slug: produit.Slug}) }}" class="btn btn-primary">Voir les détails</a>
+            </div>
+          </div>
+      {% endfor %} #}
+    </section>
+
+    <section class="row">
       <div class="col-12">
         <h1 class="my-4">Catégories phares</h1>
       </div>
+      {% for category in categories %}
+        {% if category.id == 2 %}
+          <div class="col-md-8 mb-3" style="height:350px;" >
+            <div class="card h-100" style="background-image: url('{{ asset('uploads/' ~ category.media.first().lien) }}'); background-size: cover; background-position: center; height: 100px; position: relative; ">
+              <div class="card-body card-body-custom">
+                <h5 class="display-2">{{ category.nom }}</h5>
+                <a href="{{ path('app_categorie_list', {Slug: category.Slug}) }}" class="btn btn-primary">Voir les produits</a>
+              </div>
+            </div>
+          </div>
+        {% elseif category.id in [6, 3] %}
+          <div class="col-md-4 mb-3 {{ category.id == 3 ? '2' : '3' }}" style="height:350px;">
+            <div class="card h-100" style="background-image: url('{{ asset('uploads/' ~ category.media.first().lien) }}'); background-size: cover; background-position: top; height: 100px;  position: relative;">
+              <div class="card-body card-body-custom">
+                <h2>{{ category.nom }}</h2>
+                <a href="{{ path('app_categorie_list', {Slug: category.Slug}) }}" class="btn btn-primary">Voir les produits</a>
+              </div>
+            </div>
+          </div>
+        {% elseif category.id == 7 %}
+          <div class="col-md-8 mb-3" style="height:350px;">
+            <div class="card h-100" style="background-image: url('{{ asset('uploads/' ~ category.media.first().lien) }}'); background-size: cover; background-position: center; height: 100px;">
+              <div class="card-body card-body-custom" >
+                <h5 class="display-2">{{ category.nom }}</h5>
+                <a href="{{ path('app_categorie_list', {Slug: category.Slug}) }}" class="btn btn-primary">Voir les produits</a>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </section>
 
-      {# {% for category in categories %}
-        {% if category.id in [2, 3, 6, 7] %}
-          <div class="col-md-3 mb-3">
-            <div class="card h-100">
+    <section class="row">
+      <div class="col-12">
+        <h1 class="my-4">Plus d'articles</h1>
+      </div>
+      {% for category in categories %}
+        {% if category.id in [9, 10, 11] %}
+          <div class="col-12 col-sm-6 col-md-4" style="margin-bottom:10px;">
+            <div class="card h-100" >
+              {% for medium in category.media %}
+                <div class="img-container" style="height: 500px; overflow: hidden;">
+                  <img class="card-img-top img-fluid" style="width: 100%; height: 100%; object-fit: cover;" src="{{ asset('uploads/' ~ medium.lien) }}" alt="{{ medium.altText|default(category.nom) }}">
+                </div>
+              {% endfor %}
               <div class="card-body">
                 <h3 class="card-title">{{ category.nom }}</h3>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -25,45 +82,7 @@
             </div>
           </div>
         {% endif %}
-      {% endfor %} #}
-      {% for category in categories %}
-        {% if category.id == 2 %}
-          <div class="col-md-8 mb-3">
-            <div class="card h-100">
-              {# <img class="card-img-top" src="{{ asset('uploads/' ~ category.image) }}" alt="{{ category.nom }}"> #}
-              <div class="card-body">
-                <h5 class="card-title">{{ category.nom }}</h5>
-                <p class="card-text">{{ category.description }}</p>
-                <a href="{{ path('app_categorie_list', {Slug: category.Slug}) }}" class="btn btn-primary">Voir les produits</a>
-              </div>
-            </div>
-          </div>
-        {% elseif category.id in [3, 6] %}
-          <div class="col-md-4 mb-3 {{ category.id == 3 ? '2' : '3' }}">
-            <div class="card h-100">
-              {# <img class="card-img-top" src="{{ asset('uploads/' ~ category.image) }}" alt="{{ category.nom }}"> #}
-              <div class="card-body">
-                <h5 class="card-title">{{ category.nom }}</h5>
-                <p class="card-text">{{ category.description }}</p>
-                <a href="{{ path('app_categorie_list', {Slug: category.Slug}) }}" class="btn btn-primary">Voir les produits</a>
-              </div>
-            </div>
-          </div>
-        {% elseif category.id == 7 %}
-          <div class="col-md-4 mb-3">
-            <div class="card h-100">
-              {# <img class="card-img-top" src="{{ asset('uploads/' ~ category.image) }}" alt="{{ category.nom }}"> #}
-              <div class="card-body">
-                <h5 class="card-title">{{ category.nom }}</h5>
-                <p class="card-text">{{ category.description }}</p>
-                <a href="{{ path('app_categorie_list', {Slug: category.Slug}) }}" class="btn btn-primary">Voir les produits</a>
-              </div>
-            </div>
-          </div>
-        {% endif %}
       {% endfor %}
-
-
     </section>
   </main>
 {% endblock %}

@@ -210,3 +210,18 @@ footer {
 .btn-action:hover {
     background-color: #9EC4DB;
 }
+
+.card-body-custom {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: linear-gradient(to top, #9EC4DB, transparent);
+  padding: 20px;
+  color: #333;
+}
+
+
+
+
+
+

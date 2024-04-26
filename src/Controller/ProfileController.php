@@ -8,11 +8,18 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class ProfileController extends AbstractController
 {
-    #[Route('/profile', name: 'app_profile')]
-    public function index(): Response
-    {
-        return $this->render('profile/index.html.twig', [
-            'controller_name' => 'ProfileController',
-        ]);
+    #[Route('/mon-compte', name: 'app_profile_index')]
+public function index(): Response
+{
+    $user = $this->getUser(); // Assurez-vous que getUser() retourne un objet User
+    if (!$user) {
+        throw $this->createNotFoundException('Utilisateur non trouvé');
     }
+
+    return $this->render('profile/index.html.twig', [
+        'user' => $user,
+        // 'commandes' => $user->getCommandes(),
+    ]);
+}
+
 }
