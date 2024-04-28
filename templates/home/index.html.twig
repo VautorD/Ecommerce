@@ -9,9 +9,10 @@
   </div>
 
   <main class="container">
+
     <section class="row">
     
-      {# {% for produit in produits %}
+      {% for produit in produits %}
           <div class="col-md-3 mb-3">
             <div class="card h-300" >
                 <h1 class="display-2" style="margin-top:50px ">{{ produit.nom }}</h1>
@@ -20,7 +21,7 @@
                 <a href="{{ path('app_produit_details', {Slug: produit.Slug}) }}" class="btn btn-primary">Voir les détails</a>
             </div>
           </div>
-      {% endfor %} #}
+      {% endfor %}
     </section>
 
     <section class="row">
@@ -61,7 +62,7 @@
 
     <section class="row">
       <div class="col-12">
-        <h1 class="my-4">Plus d'articles</h1>
+        <h1 class="my-4">Plus d'articles sur nos sweats plaids</h1>
       </div>
       {% for category in categories %}
         {% if category.id in [9, 10, 11] %}
