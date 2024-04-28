@@ -9,17 +9,17 @@ use Symfony\Component\Routing\Attribute\Route;
 class ProfileController extends AbstractController
 {
     #[Route('/mon-compte', name: 'app_profile_index')]
-public function index(): Response
-{
-    $user = $this->getUser(); // Assurez-vous que getUser() retourne un objet User
-    if (!$user) {
-        throw $this->createNotFoundException('Utilisateur non trouvé');
-    }
+    public function index(): Response
+    {
+        $user = $this->getUser();
 
-    return $this->render('profile/index.html.twig', [
-        'user' => $user,
-        // 'commandes' => $user->getCommandes(),
-    ]);
-}
+        if (!$user) {
+            return $this->redirectToRoute('app_login');
+        }
+
+        return $this->render('profile/index.html.twig', [
+            'user' => $user,
+        ]);
+    }
 
 }
