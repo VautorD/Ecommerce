@@ -13,12 +13,12 @@
                     <article class="card h-100">
                         {% for media in produit.Media %}
                             <div class="carousel-item {{ loop.first ? 'active' }}">
-                                <img src="{{ asset('uploads/' ~ media.lien) }}" class="d-block w-100" alt="{{ media.alt }}">
+                                <img  src="{{ asset('uploads/' ~ media.lien) }}" class="product-image d-block w-100" alt="{{ media.alt }}">
                             </div>
                         {% endfor %}
                         <div class="card-body">
-                            <h2 class="card-title">{{ produit.nom }}</h2>
-                            <p class="card-text">{{ produit.prix }} €</p>
+                            <h2 class="h2">{{ produit.nom }}</h2>
+                            <p class="h6">{{ produit.prix }} €</p>
                             <a href="{{ path('app_produit_details', {Slug: produit.Slug}) }}" class="btn btn-primary">Voir les détails</a>
                         </div>
                     </article>

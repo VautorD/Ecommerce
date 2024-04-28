@@ -229,14 +229,20 @@ form h1 {
   background-color: #9EC4DB;
 }
 
-/* .card-body-custom {
-position: absolute;
-bottom: 0;
-width: 100%;
-background: linear-gradient(to top, #9EC4DB, transparent);
-padding: 20px;
-color: #333;
-} */
+.product-image {
+  height: 300px;
+}
+
+.produit-img{
+  height: 200px;
+}
+
+.card-body{
+  background: linear-gradient(to bottom, rgba(158, 196, 219, 0) 50%, #9EC4DB 100%);
+}
+
+
+
 
 
 
