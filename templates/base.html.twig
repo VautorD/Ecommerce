@@ -43,9 +43,10 @@
               </button>
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-                <form class="d-flex justify-content-center my-2 my-lg-0 mx-auto w-100">
+                <form class="d-flex justify-content-center my-2 my-lg-0 mx-auto w-100" action="{{ path('search') }}" method="GET">
+
                   <div class="input-group w-50">
-                    <input class="form-control" type="search" placeholder="Recherche" aria-label="Search">
+                    <input class="form-control" type="search" name="q" placeholder="Recherche" aria-label="Search">
                     <button class="btn btn-custom" type="submit">
                       <i class="fas fa-search"></i>
                     </button>

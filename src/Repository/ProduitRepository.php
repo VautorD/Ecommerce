@@ -45,4 +45,18 @@ class ProduitRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+
+
+
+
+
+    public function findByPartialNom(string $term): array
+    {
+        return $this->createQueryBuilder('p')
+        ->where('p.Nom LIKE :term')
+        ->setParameter('term', '%' . $term . '%')
+        ->getQuery()
+        ->getResult();
+    }
+
 }

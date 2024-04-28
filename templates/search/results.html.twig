@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Résultats de la recherche{% endblock %}
+
+{% block body %}
+    <h1>Résultats de la recherche pour "{{ term }}"</h1>
+
+    {% if produits is not empty %}
+       <section class= "row">
+            {% for produit in produits %}
+                <div class="col-md-3 mb-3">
+                    <div class="card h-300" >
+                        <h1 class="display-2" style="margin-top:50px ">{{ produit.getNom ()}}</h1>
+                        <p class="display-3">Prix: {{ produit.getPrix() }} €</p>
+                        <a href="{{ path('app_produit_details', {Slug: produit.Slug}) }}" class="btn btn-primary">Voir les détails</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </section> 
+    {% else %}
+        <p>Aucun produit trouvé pour "{{ term }}"</p>
+    {% endif %}
+{% endblock %}
