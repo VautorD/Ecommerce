@@ -9,34 +9,34 @@
   </div>
 
   <main class="container">
-      <section class="row">
+    <section class="row">
       <div class="col-12">
-    <h1 class="my-4">Articles les plus vendus</h1>
-  </div>
-<div class="row">
-  <div class="col-md-12">
-    <div class="d-flex flex-row overflow-auto">
-      {% for produit in produits %}
-        {% if produit.id in [16, 20, 3, 12] %}
-        <div class="col-md-3 mb-3 mr-3">
-          <div class="card h-300" style="margin:10px;">
-            {% for media in produit.Media %}
-              <div class="carousel-item {{ loop.first ? 'active' }}">
-                <img src="{{ asset('uploads/' ~ media.lien) }}" class="produit-img d-block w-100" alt="{{ media.alt }}">
+        <h1 class="my-4">Articles les plus vendus</h1>
+      </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="d-flex flex-row flex-wrap justify-content-start overflow-auto">
+          {% for produit in produits %}
+            {% if produit.id in [16, 20, 3, 12] %}
+            <div class="col-md-3 mb-3 mr-3">
+              <div class="card h-300" style="margin:10px;">
+                {% for media in produit.Media %}
+                  <div class="carousel-item {{ loop.first ? 'active' }}">
+                    <img src="{{ asset('uploads/' ~ media.lien) }}" class="produit-img d-block w-100" alt="{{ media.alt }}">
+                  </div>
+                {% endfor %}
+                <h1 class="lead">{{ produit.nom }}</h1>
+                <p class="h6">Catégorie: {{ produit.categorie.nom }}</p>
+                <p class="lead">Prix: {{ produit.prix }} €</p>
+                <a href="{{ path('app_produit_details', {Slug: produit.Slug}) }}" class="btn btn-primary">Voir les détails</a>
               </div>
-            {% endfor %}
-            <h1 class="lead">{{ produit.nom }}</h1>
-            <p class="h6">Catégorie: {{ produit.categorie.nom }}</p>
-            <p class="lead">Prix: {{ produit.prix }} €</p>
-            <a href="{{ path('app_produit_details', {Slug: produit.Slug}) }}" class="btn btn-primary">Voir les détails</a>
-          </div>
+            </div>
+            {% endif %}
+          {% endfor %}
         </div>
-        {% endif %}
-      {% endfor %}
+      </div>
     </div>
-  </div>
-</div>
-</section>
+  </section>
 
 
 
@@ -81,7 +81,7 @@
 
     <section class="row">
       <div class="col-12">
-        <h1 class="my-4">Plus d'articles sur nos sweats plaids</h1>
+        <h1 class="my-4">Trouvez le sweat plaid parfait pour votre style</h1>
       </div>
       {% for category in categories %}
         {% if category.id in [9, 10, 11] %}
