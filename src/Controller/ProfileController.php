@@ -4,22 +4,22 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class ProfileController extends AbstractController
 {
     #[Route('/mon-compte', name: 'app_profile_index')]
-public function index(): Response
-{
-    $user = $this->getUser(); // Assurez-vous que getUser() retourne un objet User
-    if (!$user) {
-        throw $this->createNotFoundException('Utilisateur non trouvé');
+    public function index(): Response
+    {
+        $user = $this->getUser();
+
+        if (!$user) {
+            return $this->redirectToRoute('app_login');
+        }
+
+        return $this->render('profile/index.html.twig', [
+            'user' => $user,
+        ]);
     }
-
-    return $this->render('profile/index.html.twig', [
-        'user' => $user,
-        // 'commandes' => $user->getCommandes(),
-    ]);
-}
-
 }
