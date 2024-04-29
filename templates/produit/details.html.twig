@@ -48,9 +48,6 @@
                     </div>
 
                     <div class="d-flex mb-3 align-items-center">
-                        {# <button class="btn btn-secondary" type="button" id="btn-minus" >-</button>
-                        <input type="text" class="form-control text-center mx-2" id="quantite" value="1" style="width: 60px;">
-                        <button class="btn btn-secondary" type="button" id="btn-plus" >+</button> #}
                         <a href="{{ path('app_panier_add', {'id': produit.id}) }}" id="ajouter-au-panier" class="btn btn-primary flex-grow-1 ml-2" style="margin-left: 60px; margin-top:10px;">Ajouter au panier</a>
                     </div>
                     
@@ -63,23 +60,15 @@
 </main>
 {% endblock %}
 
+
+
+
+
+
 {% block javascripts %}
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-    // const btnPlus = document.getElementById('btn-plus');
-    // const btnMinus = document.getElementById('btn-minus');
-    // const quantiteInput = document.getElementById('quantite');
     const sizeOptions = document.querySelectorAll('.size-option');
-
-    // btnPlus.addEventListener('click', () => {
-    //     quantiteInput.value = parseInt(quantiteInput.value) + 1;
-    // });
-
-    // btnMinus.addEventListener('click', () => {
-    //     if (parseInt(quantiteInput.value) > 1) {
-    //         quantiteInput.value = parseInt(quantiteInput.value) - 1;
-    //     }
-    // });
 
     sizeOptions.forEach((sizeOption) => {
         sizeOption.addEventListener('click', (e) => {

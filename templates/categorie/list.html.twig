@@ -3,7 +3,7 @@
 {% block title %}Catégorie {{ categorie.nom }}{% endblock %}
 
 {% block body %}
-    <main class="container">
+    {# <main class="container">
         <section class="row">
             <div class="col-12">
                 <h1>Tous nos {{ categorie.nom }}</h1>
@@ -25,5 +25,41 @@
                 </div>
             {% endfor %}
         </section>
+    </main> #}
+    <main class="container">
+        <section class="row">
+            <div class="col-12">
+                <h1 class="display-4 mb-4">Découvrez nos produits {{ categorie.nom }}</h1>
+            </div>
+            {% for produit in produits %}
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+                    <article class="card h-100 shadow">
+                        <div id="carousel{{ produit.id }}" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                {% for media in produit.Media %}
+                                <div class="carousel-item {{ loop.first ? 'active' }}">
+                                    <img src="{{ asset('uploads/' ~ media.lien) }}" class="produit-img d-block w-100" alt="{{ media.alt }}">
+                                </div>
+                                {% endfor %}
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carousel{{ produit.id }}" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carousel{{ produit.id }}" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <h2 class="h4">{{ produit.nom }}</h2>
+                            <p class="lead">{{ produit.prix }} €</p>
+                            <a href="{{ path('app_produit_details', {Slug: produit.Slug}) }}" class="btn btn-primary">Voir les détails</a>
+                        </div>
+                    </article>
+                </div>
+            {% endfor %}
+        </section>
     </main>
+
 {% endblock %}
