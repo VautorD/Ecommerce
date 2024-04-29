@@ -44,8 +44,8 @@
       {% for category in categories %}
           {% if category.id == 2 %}
               <div class="col-md-8 mb-3">
-                <div class="categorie card" style="height:800px; background-image: url('{{ asset('uploads/' ~ category.media.first().lien) }}'); background-size: cover; background-position: top; ">
-                  <div style="margin-top:600px; color:white;" class="card-body">
+                <div class="categorie card" style="height:700px; background-image: url('{{ asset('uploads/' ~ category.media.first().lien) }}'); background-size: cover; background-position: top; ">
+                  <div style="margin-top:500px; color:white;" class="card-body">
                     <h5  class="display-2 ">{{ category.nom }}</h5>
                     <a href="{{ path('app_categorie_list', {Slug: category.Slug}) }}" class="sous-cat btn btn-primary">Voir les produits</a>
                   </div>
@@ -53,15 +53,15 @@
               </div>
               <div class="col-md-4" >
                 {% elseif category.id == 6 %}
-                        <div class="categorie card col-sm-12 mb-3" style="height:390px; margin-top:20px; background-image: url('{{ asset('uploads/' ~ category.media.first().lien) }}'); background-size: cover; background-position: top; ">
-                            <div style="margin-top:280px; color:white;" class="card-body ">
+                        <div class="categorie card col-sm-12 mb-3" style="height:320px; margin-top:20px; background-image: url('{{ asset('uploads/' ~ category.media.first().lien) }}'); background-size: cover; background-position: top; ">
+                            <div style="margin-top:200px; color:white;" class="card-body ">
                                 <h5 class="h2">{{ category.nom }}</h5>
                                 <a href="{{ path('app_categorie_list', {Slug: category.Slug}) }}" class="sous-cat btn btn-primary">Voir les produits</a>
                             </div>
                         </div>
                 {% elseif category.id == 3 %}
-                    <div class="categorie card col-sm-12 mb-3" style="height:390px; background-image: url('{{ asset('uploads/' ~ category.media.first().lien) }}'); background-size: cover; background-position: center; ">
-                      <div style="margin-top:280px; color:white;" class="card-body ">
+                    <div class="categorie card col-sm-12 mb-3" style="height:360px; background-image: url('{{ asset('uploads/' ~ category.media.first().lien) }}'); background-size: cover; background-position: center; ">
+                      <div style="margin-top:200px; color:white;" class="card-body ">
                         <h5 class="h2">{{ category.nom }}</h5>
                         <a href="{{ path('app_categorie_list', {Slug: category.Slug}) }}" class="sous-cat btn btn-primary">Voir les produits</a>
                     </div>
