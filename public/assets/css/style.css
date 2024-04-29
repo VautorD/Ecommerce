@@ -245,7 +245,7 @@ form h1 {
   background: linear-gradient(to bottom, rgba(158, 196, 219, 0) 0%, #9EC4DB 100%);
 }
 
-.card:hover {
+.card2:hover {
   box-shadow: 0 8px 16px #ed7d68; 
 }
 
