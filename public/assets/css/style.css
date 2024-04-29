@@ -11,7 +11,6 @@
 }
 
 
-/* Style pour les éléments de la barre de navigation*/
 .navbar-nav .nav-item {
 margin-right: 10px;
 }
@@ -41,9 +40,6 @@ font-weight: normal;
   color: #FFFFFF; 
   border: 2px solid #ed7d68; 
 }
-
-
-
 
 
 
@@ -103,8 +99,6 @@ footer ul li a:hover {
 }
 
 
-
-
 .copyright-text {
   text-align: center;
   color: #fff;
@@ -155,9 +149,6 @@ footer ul li a:hover {
   text-decoration: none; 
   font-size: 20px ;
 }
-
-
-
 
 
 
@@ -233,13 +224,100 @@ form h1 {
   height: 250px;
 }
 
-.produit-img{
-  height: 300px;
+.produit-img {
+  height: 250px;
+  object-fit: cover;
 }
 
 .card-body{
   background: linear-gradient(to bottom, rgba(158, 196, 219, 0) 50%, #9EC4DB 100%);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.card {
+  border: none; 
+  box-shadow: 0 10px 12px rgba(0, 0, 0, 0.1); 
+  transition: box-shadow 0.3s ease;
+}
+
+
+
+
+
+
+.card2:hover {
+  box-shadow: 0 8px 16px #ed7d68; 
+}
+
+.categorie {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.categorie::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); 
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.categorie:hover::before {
+  opacity: 1; 
+}
+
+.categorie .card-body {
+  position: relative;
+  z-index: 1;
+}
+
+.sous-cat {
+  display: none;
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  z-index: 2;
+}
+
+.categorie:hover .sous-cat {
+  display: block; 
+
+}
+
+
+
 
 
 

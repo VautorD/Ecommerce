@@ -61,10 +61,7 @@ class AdressUserType extends AbstractType
                     'class' => 'form-control'
                 ]
             ])
-            ->add('user', EntityType::class, [
-                'class' => User::class,
-                'choice_label' => 'id',
-            ])
+           
         ;
     }
 
