@@ -11,73 +11,68 @@
   <main class="container">
     <section class="row">
       <div class="col-12">
-        <h1 class="my-4">Articles les plus vendus</h1>
+        <h1>Articles les plus vendus</h1>
       </div>
-    <div class="row">
-      <div class="col-md-12">
-        <div class="d-flex flex-row flex-wrap justify-content-start overflow-auto">
-          {% for produit in produits %}
-            {% if produit.id in [16, 20, 3, 12] %}
-            <div class="col-md-3 mb-3 mr-3">
-              <div class="card h-300" style="margin:10px;">
-                {% for media in produit.Media %}
-                  <div class="carousel-item {{ loop.first ? 'active' }}">
-                    <img src="{{ asset('uploads/' ~ media.lien) }}" class="produit-img d-block w-100" alt="{{ media.alt }}">
+            {% for produit in produits %}
+              {% if produit.id in [16, 20, 3, 12] %}
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
+                  <article class="card h-100">
+                  {% for media in produit.Media %}
+                    <div class="carousel-item {{ loop.first ? 'active' }}">
+                      <img src="{{ asset('uploads/' ~ media.lien) }}" class="produit-img d-block w-100" alt="{{ media.alt }}">
+                    </div>
+                  {% endfor %}
+                  <div class="card-body">
+                    <h1 class="h2">{{ produit.nom }}</h1>
+                    <p class="">Catégorie: {{ produit.categorie.nom }}</p>
+                    <p class="h6">Prix: {{ produit.prix }} €</p>
+                    <a href="{{ path('app_produit_details', {Slug: produit.Slug}) }}" class="btn btn-primary">Voir les détails</a>
                   </div>
-                {% endfor %}
-                <h1 class="lead">{{ produit.nom }}</h1>
-                <p class="h6">Catégorie: {{ produit.categorie.nom }}</p>
-                <p class="lead">Prix: {{ produit.prix }} €</p>
-                <a href="{{ path('app_produit_details', {Slug: produit.Slug}) }}" class="btn btn-primary">Voir les détails</a>
-              </div>
-            </div>
-            {% endif %}
-          {% endfor %}
-        </div>
+                  </article>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
       </div>
-    </div>
-  </section>
-
-
-
+    </section>
 
     <section class="row">
-  <div class="col-12">
-    <h1 class="my-4">Catégories phares</h1>
-  </div>
-  {% for category in categories %}
-    {% if category.id == 2 %}
-      <div class="col-md-8 mb-3" style="height: 400px; ">
-        <div class="card h-100" style="background-image: url('{{ asset('uploads/' ~ category.media.first().lien) }}'); background-size: cover; background-position: top; ">
-          <div class="card-body card-body-custom d-flex flex-column justify-content-between">
-            <h5 style="margin-top:220px;" class="display-2 ">{{ category.nom }}</h5>
-            <a href="{{ path('app_categorie_list', {Slug: category.Slug}) }}" class="btn btn-primary">Voir les produits</a>
-          </div>
-        </div>
+      <div class="col-12">
+          <h1 class="my-4">Catégories phares</h1>
       </div>
-      
-    {% elseif category.id in [6, 3] %}
-      <div class="col-md-4 mb-3 {{ category.id == 3 ? '6' : '3' }}" style="height: 400px;">
-        <div class="card h-100" style="background-image: url('{{ asset('uploads/' ~ category.media.first().lien) }}'); background-size: cover; background-position: top; position: relative;">
-          <div class="card-body card-body-custom d-flex flex-column justify-content-between" >
-            <h2 style="margin-top:250px;" >{{ category.nom }}</h2>
-            <a href="{{ path('app_categorie_list', {Slug: category.Slug}) }}" class="btn btn-primary">Voir les produits</a>
-          </div>
-        </div>
-      </div>
-    {% elseif category.id == 7 %}
-      <div class="col-md-8 mb-3" style="height: 400px;">
-        <div class="card h-100" style="background-image: url('{{ asset('uploads/' ~ category.media.first().lien) }}'); background-size: cover; background-position: center;">
-          <div class="card-body card-body-custom d-flex flex-column justify-content-between" >
-            <h5 style="margin-top:220px;" class="display-2">{{ category.nom }}</h5>
-            <a href="{{ path('app_categorie_list', {Slug: category.Slug}) }}" class="btn btn-primary">Voir les produits</a>
-          </div>
-        </div>
-      </div>
-    {% endif %}
-  {% endfor %}
-</section>
 
+      {% for category in categories %}
+          {% if category.id == 2 %}
+              <div class="col-md-8 mb-3">
+                <div class="categorie card" style="height:800px; background-image: url('{{ asset('uploads/' ~ category.media.first().lien) }}'); background-size: cover; background-position: top; ">
+                  <div style="margin-top:600px; color:white;" class=" card-body">
+                    <h5  class="display-2 ">{{ category.nom }}</h5>
+                    <a href="{{ path('app_categorie_list', {Slug: category.Slug}) }}" class="sous-cat btn btn-primary">Voir les produits</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4" >
+                {% elseif category.id == 6 %}
+                    <div >
+                        <div class="categorie card col-sm-12 mb-3" style="height:390px; margin-top:20px; background-image: url('{{ asset('uploads/' ~ category.media.first().lien) }}'); background-size: cover; background-position: top; ">
+                            <div style="margin-top:280px; color:white;" class="card-body ">
+                                <h5 class="h2">{{ category.nom }}</h5>
+                                <a href="{{ path('app_categorie_list', {Slug: category.Slug}) }}" class="sous-cat btn btn-primary">Voir les produits</a>
+                            </div>
+                        </div>
+                    </div>
+                {% elseif category.id == 3 %}
+                  <div >
+                    <div class="categorie card col-sm-12 mb-3" style="height:390px; background-image: url('{{ asset('uploads/' ~ category.media.first().lien) }}'); background-size: cover; background-position: center; ">
+                      <div style="margin-top:280px; color:white;" class="card-body ">
+                        <h5 class="h2">{{ category.nom }}</h5>
+                        <a href="{{ path('app_categorie_list', {Slug: category.Slug}) }}" class="sous-cat btn btn-primary">Voir les produits</a>
+                    </div>
+                  </div>
+              </div>
+          {% endif %}
+      {% endfor %}
+    </section>
 
     <section class="row">
       <div class="col-12">
